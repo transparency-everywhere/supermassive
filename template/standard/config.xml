@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template>
+    <template_title>standard</template_title>
+    <number_of_navigations>1</number_of_navigations>
+    <navigations>
+        <navigation>
+            <navigation_id>1</navigation_id>
+            <navigation_ul_class>nav navbar-nav</navigation_ul_class>
+            <navigation_title>Header Navigation</navigation_title>
+            <parsing_information>
+                <levels>
+                    <level>
+                        <depth>0</depth>
+                        <content>&lt;li data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;&lt;a href=&quot;%link%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation>&lt;li class="mega-menu dropdown active" data-type=&quot;navigation&quot; data-id=&quot;%navigation_id%&quot;&gt;&lt;a href=&quot;%link%&quot;  class="dropdown-toggle" &gt;%caption%&lt;/a&gt;%navigation% &lt;/li&gt;</navigation>
+                        <containerOpen>&lt;ul id="topMain" class="nav navbar-nav"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                    <level>
+                        <depth>1</depth>
+                        <content>&lt;li&gt;&lt;a href=&quot;%link%&quot;  data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation><li><a class="dropdown-toggle" href="#">%caption%</a>%navigation%</li></navigation>
+                        <containerOpen>&lt;ul class="dropdown-menu"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                    <level>
+                        <depth>2</depth>
+                        <content>&lt;li&gt;&lt;a href=&quot;%link%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation><li><a class="dropdown-toggle" href="#">%caption%</a>%navigation%</li></navigation>
+                        <containerOpen>&lt;ul class="dropdown-menu"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                </levels>
+            </parsing_information>
+        </navigation>
+    </navigations>
+</template>

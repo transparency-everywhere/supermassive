@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- contains complete meta string -->  
+%meta% 
+    
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>%title%</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="%path%/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="%path%/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="%path%/bootstrap/theme.css" rel="stylesheet">
+
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">standard</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            %navigation[1]%
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+
+<div>
+      
+%content%
+</div>
+<div>
+%widget_area[1]%
+</div>
+
+
+    </div><!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="%path%/bootstrap/js/jquery.min.js"></script>
+    <script src="%path%/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template>
+    <template_title>Naturboden</template_title>
+    <number_of_navigations>3</number_of_navigations>
+    <navigations>
+        <navigation>
+            <navigation_id>1</navigation_id>
+            <navigation_ul_class></navigation_ul_class>
+            <navigation_title>Main Navigation</navigation_title>
+            <parsing_information>
+                <containerOpen>&lt;ul data-id="%navigation_id%"&gt;</containerOpen>
+                <levels>
+                    <level>
+                        <depth>0</depth>
+                        <content>&lt;li&gt;&lt;a href=&quot;%link%&quot;&gt;%caption% asdasd&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation>&lt;li&gt;&lt;a href=&quot;%link%&quot;&gt;%caption%&lt;/a&gt;%navigation% asdasdasd&lt;/li&gt;</navigation>
+                        <containerOpen>&lt;ul&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                </levels>
+                <containerClose>&lt;/ul&gt;</containerClose>
+            </parsing_information>
+        </navigation>
+        <navigation>
+            <navigation_id>2</navigation_id>
+            <navigation_ul_class></navigation_ul_class>
+            <navigation_title>Footer Navigation</navigation_title>
+        </navigation>
+    </navigations>
+</template>

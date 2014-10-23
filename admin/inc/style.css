@@ -1,0 +1,401 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25.07.2014, 23:12:15
+    Author     : Transparency-Everywhere
+*/
+
+body{
+    overflow:auto!important;
+}
+
+
+div:hover .cms_dropdown{
+    display: block!important;
+}
+
+
+#adminPanel{
+    min-height:300px;
+}
+
+.cms_dropdown{
+    color: #8A8A8A;
+    background: #F7F7F7;
+    border: 1px solid #F0F0F0;
+    border-radius: 3px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display:none;
+}
+
+.cms_dropdown img{
+    height: 20px;
+}
+
+.cms_dropdown ul{
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #F7F7F7;
+    border-top: 1px solid #F0F0F0;
+    position: absolute;
+    margin-left: -89px;
+    width: 120px;
+}
+.cms_dropdown header{
+    padding:5px;
+}
+
+.cms_dropdown li{
+    cursor:pointer;
+    padding: 5px;
+    margin: 0;
+}
+
+.cms_dropdown:hover ul{
+    display:block;
+}
+
+
+.cms_widget_area ul{
+    list-style: none;
+    padding: 0;
+}
+
+.cms_widget_area ul li:first-of-type{
+    font-size:17px;
+}
+
+#cms_menu{
+    margin-left:-245px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 250px;
+    z-index: 9999;
+    border: 1px solid #c9c9c9;
+    background:#FFF;
+    
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+}
+
+#cms_menu li.spacer{
+    display:none;
+}
+
+#cms_menu:hover{
+    margin-left:0px;
+    -webkit-transform: rotateZ(0deg);
+-moz-transform: rotateZ(0deg);
+-ms-transform: rotateZ(0deg);
+}
+
+#cms_menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #898989;
+    font-weight: 200;
+}
+
+#cms_menu li.userField{
+    margin: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background: #EAEAEA;
+    padding: 5px;
+    height:auto;
+}
+
+#cms_menu li.userField a:link,#cms_menu li.userField a:hover,#cms_menu li.userField a:active,#cms_menu li.userField a:visited{
+    color: #686868;
+    font-size: 15px;
+}
+
+#cms_menu li.headline{
+    font-size: 17px;
+    border-top: 1px solid #F3F3F3;
+}
+
+#cms_menu li{
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+    height: 40px;
+    padding-top: 9px;
+    font-size: 15px;
+}
+
+#cms_menu li:hover{
+    height:auto;
+}
+
+    #cms_menu ul li>ul{
+        display: none;
+        margin: -5px;
+        margin-top: 0;
+        border-top: 1px solid #F3F3F3;
+    }
+
+    #cms_menu ul li:hover>ul{
+        display:block;
+    }
+
+    #cms_menu ul li.active>ul{
+        display:block;
+    }
+
+    #cms_menu ul li ul li{
+        
+        padding-left:10px;
+    }
+
+    #cms_menu ul li ul li:hover{
+        background: #EAEAEA;
+        height:40px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#cmsMenu {
+    position: absolute;
+top: 50px;
+left: 0;
+width: 250px;
+max-height: 250px;
+z-index: 9999;
+}
+
+#cmsMenu .glyphicon{
+    margin-right: 5px;
+}
+
+#cmsMenu .table tr:first-of-type td{
+    border-top: none;
+}
+
+#cmsMenu .panel-body{
+    padding:0;
+}
+
+#cmsMenu ul{
+    margin: 0;
+    
+}
+
+#cmsMenu ul li {
+    float:left;
+    list-style:none;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+#cmsMenu ul li ul{
+    position:absolute;
+    display:none;
+}
+
+#cmsMenu ul li:hover ul{
+    display:block;
+}
+
+#cmsMenu .toggleMenu{
+    position: absolute;
+    right: 0;
+margin-right: -20px;
+}
+.dynForm h1{
+    margin-top:0px;
+}
+
+.dynForm table{
+    width: 100%;
+}
+
+.dynForm tr{
+    min-height: 40px;
+    height: 40px;
+}
+
+/*.dynForm tr:first-child {
+   background: rgb(248, 248, 248);
+}
+.dynForm tr:nth-child(2n+3)  {
+    background: rgb(248, 248, 248);
+}
+.dynForm tr:last-child  {
+    background: rgb(255, 255, 255);
+    height:5px;
+}*/
+
+.dynForm tr .toggle{
+    position: absolute;
+    margin-top: -10px;
+}
+.dynForm .advanced{
+    width: 100%;
+}
+
+.dynForm .advanced .advancedField {
+    display: none;
+}
+
+.dynForm .advanced .glyphicon-chevron-up{
+    display:none;
+}
+.dynForm .advanced.open .glyphicon-chevron-down{
+    display:none;
+}
+.dynForm .advanced.open .glyphicon-chevron-up{
+    display:block;
+}
+
+.dynForm .wysiwyg{
+    width:100%;
+    min-height:120px;
+}
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px){
+  .affix-content .container {
+    width: 700px;
+  }   
+
+  html,body{
+    background-color: #f8f8f8;
+    height: 100%;
+    overflow: hidden;
+  }
+    .affix-content .container .page-header{
+    margin-top: 0;
+  }
+
+  .affix-sidebar{
+    padding-right:0; 
+    font-size:small;
+    padding-left: 0;
+  }  
+  .affix-row, .affix-container, .affix-content{
+    height: 100%;
+    overflow: scroll;
+    margin-left: 0;
+    margin-right: 0;    
+  } 
+  .affix-content{
+    background-color:white; 
+  } 
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar{
+    border-radius:0; 
+    margin-bottom:0; 
+    border:0;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }  
+}
+
+@media (min-width: 769px){
+  .affix-content .container {
+    width: 600px;
+  }
+    .affix-content .container .page-header{
+    margin-top: 0;
+  }  
+}
+
+@media (min-width: 992px){
+  .affix-content .container {
+  width: 900px;
+  }
+    .affix-content .container .page-header{
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1220px){
+  .affix-row{
+    overflow: hidden;
+  }
+
+  .affix-content{
+    overflow: auto;
+  }
+
+  .affix-content .container {
+    width: 1000px;
+  }
+
+  .affix-content .container .page-header{
+    margin-top: 0;
+  }
+  .affix-content{
+    padding-right: 30px;
+    padding-left: 30px;
+  }  
+  .affix-title{
+    border-bottom: 1px solid #ecf0f1; 
+    padding-bottom:10px;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+  .navbar-collapse{
+    padding: 0;
+  }
+  .sidebar-nav .navbar li a:hover {
+    background-color: #428bca;
+    color: white;
+  }
+  .sidebar-nav .navbar li a > .caret {
+    margin-top: 8px;
+  }  
+}
+
+
+.trash { color:rgb(209, 91, 71); }
+.flag { color:rgb(248, 148, 6); }
+.panel-body { padding:0px; }
+.panel-footer .pagination { margin: 0; }
+.panel .glyphicon,.list-group-item .glyphicon { margin-right:5px; }
+.panel-body .radio, .checkbox { display:inline-block;margin:0px; }
+.panel-body input[type=checkbox]:checked + label { text-decoration: line-through;color: rgb(128, 144, 160); }
+.list-group-item:hover, a.list-group-item:focus {text-decoration: none;background-color: rgb(245, 245, 245);}
+.list-group { margin-bottom:0px; }
+
+.panel{
+    border: 1px solid #E2E2E2!important;
+}

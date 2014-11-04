@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template>
+    <template_title>Ulas</template_title>
+    <number_of_navigations>2</number_of_navigations>
+    <navigations>
+        <navigation>
+            <navigation_id>1</navigation_id>
+            <navigation_ul_class>nav navbar-nav</navigation_ul_class>
+            <navigation_title>Header Navigation</navigation_title>
+            <parsing_information>
+                <levels>
+                    <level>
+                        <depth>0</depth>
+                        <content>&lt;li data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;&lt;a href=&quot;%link%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation>&lt;li data-type=&quot;navigation&quot; data-id=&quot;%navigation_id%&quot;&gt;&lt;a href=&quot;%link%&quot;  class="dropdown-toggle" &gt;%caption%&lt;/a&gt;%navigation% &lt;/li&gt;</navigation>
+                        <containerOpen>&lt;ul id="navigation_top" data-id=&quot;%navigation_id%&quot;&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                    <level>
+                        <depth>1</depth>
+                        <content>&lt;li&gt;&lt;a href=&quot;%link%&quot;  data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation><li><a class="dropdown-toggle" href="#">%caption%</a>%navigation%</li></navigation>
+                        <containerOpen>&lt;ul class="nav_dropdown"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                </levels>
+            </parsing_information>
+        </navigation>
+        <navigation>
+            <navigation_id>2</navigation_id>
+            <navigation_ul_class>nav navbar-nav</navigation_ul_class>
+            <navigation_title>Footer Navigation</navigation_title>
+            <parsing_information>
+                <levels>
+                    <level>
+                        <depth>0</depth>
+                        <content>&lt;li data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;&lt;a href=&quot;%link%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation>&lt;li data-type=&quot;navigation&quot; data-id=&quot;%navigation_id%&quot;&gt;&lt;a href=&quot;%link%&quot;  class="dropdown-toggle" &gt;%caption%&lt;/a&gt;%navigation% &lt;/li&gt;</navigation>
+                        <containerOpen>&lt;ul id="navigation_footer"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                    <level>
+                        <depth>1</depth>
+                        <content>&lt;li&gt;&lt;a href=&quot;%link%&quot;  data-type=&quot;content&quot; data-id=&quot;%content_id%&quot;&gt;%caption%&lt;/a&gt;&lt;/li&gt;</content>
+                        <navigation><li><a class="dropdown-toggle" href="#">%caption%</a>%navigation%</li></navigation>
+                        <containerOpen>&lt;ul class="nav_dropdown"&gt;</containerOpen>
+                        <containerClose>&lt;/ul&gt;</containerClose>
+                    </level>
+                </levels>
+            </parsing_information>
+        </navigation>
+    </navigations>
+    <variables>
+        <var>
+            <var_id>1</var_id>
+            <var_title>Header Headline</var_title>
+            <var_type>text</var_type>
+            <var_default>Ulas</var_default>
+        </var>
+        <var>
+            <var_id>2</var_id>
+            <var_title>Header Subline</var_title>
+            <var_type>text</var_type>
+            <var_default>A template for the supermassive cms</var_default>
+        </var>
+        <var>
+            <var_id>3</var_id>
+            <var_title>Introduction Headline</var_title>
+            <var_type>text</var_type>
+            <var_default>CREATE A BEAUTIFUL RESPONSIVE WEBSITE AT THE SPEED OF LIGHT</var_default>
+        </var>
+        <var>
+            <var_id>4</var_id>
+            <var_title>Introduction Subline</var_title>
+            <var_type>text</var_type>
+            <var_default>Ulas ist a free responsive html 5 template that comes with supermassive cms.Discover the many ways to customize ulas to create the website of your dreams!</var_default>
+        </var>
+    </variables>
+</template>

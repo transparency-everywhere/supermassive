@@ -145,11 +145,13 @@ class widget {
         //$db = new db();
         //$widgets = $db->select('widgets', array('template_widget_area_id', $template_widget_area_id));
         $output = '';
-        $sql = mysql_query("SELECT * FROM widgets_in_contents WHERE template_widget_area_id='".$template_widget_area_id."' AND content_id='".$content_id."'");
-        if($sql);
+        $sql = mysql_query("SELECT * FROM `widgets_in_contents` WHERE `template_widget_area_id`='".$template_widget_area_id."' AND `content_id`='".$content_id."'");
+        if($sql){
         while($widgetData = mysql_fetch_array($sql)){
-            
                 $output .= widget::generateWidget($widgetData['widget_id']);
+        }
+        }else{
+            $output = 'empty';
         }
             
         return $output;

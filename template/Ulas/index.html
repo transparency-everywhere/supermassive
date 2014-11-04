@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    %meta%
+    <title>%title%</title>
+	<link rel="stylesheet" href="boilerplate.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="ulas.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
+	<script>var __adobewebfontsappname__ = "reflow"</script>
+	<script src="http://use.edgefonts.net/ubuntu:n4,i4,n7,i7,n3,i3,n5,i5:all.js"></script>
+    </head>
+    <body>
+
+    <div id="primaryContainer" class="primaryContainer clearfix">
+        <img id="image" src="img/pastedsvg.png" class="image" />
+        <div id="navigation_top" class="clearfix">
+            %navigation[1]%
+        </div>
+        <div id="header" class="clearfix">
+            <p id="text">
+            <span id="textspan">%var[1]%<br /></span><br />%var[2]%<br />
+            </p>
+        </div>
+        <div id="introduction" class="clearfix">
+            <div id="text1" class="clearfix">
+                <p id="text2">
+                %var[3]%<br>
+                </p>
+                <p id="text3">
+                %var[4]%
+                </p>
+            </div>
+        </div>
+        <div id="content-wrapper" class="clearfix">
+            <div id="featured_page" class="clearfix">
+                %content%
+            </div>
+            <div id="about_me" class="clearfix">
+               %widget_area[1]%
+            </div>
+        </div>
+        <div id="footer" class="clearfix">
+            <div id="text5">
+            %navigation[2]%
+            </div>
+            <div id="text6">
+            %widget_area[2]%
+            </div>
+            <div id="text7">
+            %widget_area[3]%
+            </div>
+            <div id="text8">
+            %widget_area[4]%
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

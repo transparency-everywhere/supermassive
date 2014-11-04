@@ -76,12 +76,15 @@ class template{
         fclose($handle);
         $xml = new SimpleXMLElement($contents);
         
+        
+        //navigations
         $navigations = $xml->navigations->navigation;
         //echo var_dump($navigations);
         //$navigation = $xml->navigations->navigation;
         //echo var_dump($navigation);
         //return false;
         foreach($navigations AS $navigationData){
+            unset($temp);
             $temp['navigation_id'] = (string)$navigationData->navigation_id;
             $temp['navigation_ul_class'] = (string)$navigationData->navigation_ul_class;
             $temp['navigation_title'] = (string)$navigationData->navigation_title;
@@ -90,9 +93,23 @@ class template{
             }
             $navigationArray[] = $temp;
         }
+        
+        //template vars
+        
+        $templateVars = $xml->variables->var;
+        foreach($templateVars AS $templateVar){
+            unset($temp);
+            $temp['var_id'] = (string)$templateVar->var_id;
+            $temp['var_title'] = (string)$templateVar->var_title;
+            $temp['var_default'] = (string)$templateVar->var_default;
+            $template_var_array[] = $temp;
+        }
+        
+        
         $configArray['template_title'] = (string)$xml->template_title;
         $configArray['number_of_navigations'] = (int)$xml->number_of_navigations;
         $configArray['navigations'] = $navigationArray;
+        $configArray['template_vars'] = $template_var_array;
         return $configArray;
     }
     function getNavigationLevelConfig($parent_template_navigation_id, $depth){
@@ -154,15 +171,15 @@ class template{
         }
         $contents = '';
         if($this->templateName){
-        //read template file
-        if($homePage or $parseAdmin){
-            $filename = dirname(__FILE__) . '/../../template/' . $this->templateName . '/index.html';
-        }else{
-            $filename = dirname(__FILE__) . '/../../template/' . $this->templateName . '/content.html';
-        }
-        $handle = fopen($filename, "r");
-        $contents = fread($handle, filesize($filename));
-        fclose($handle);
+            //read template file
+            if($homePage){
+                $filename = dirname(__FILE__) . '/../../template/' . $this->templateName . '/index.html';
+            }else{
+                $filename = dirname(__FILE__) . '/../../template/' . $this->templateName . '/content.html';
+            }
+            $handle = fopen($filename, "r");
+            $contents = fread($handle, filesize($filename));
+            fclose($handle);
         }else{
             $contents = '%content%';
         }
@@ -192,23 +209,31 @@ class template{
         if($parseAdmin == true){
             $templatePath = '../template/' . $this->templateName;
         }else{
-            $templatePath = 'template/' . $this->templateName;
+            if(empty($contentData['basepath']))
+                $templatePath = 'template/' . $this->templateName;
+            else{
+                $templatePath = $contentData['basepath'];
+                echo $templatePath;
+                $forceLinkParsing = true;
+            }
         }
         
         $site_content = base64_decode($contentData['content']);
         
         $contents = str_replace("%title%", htmlentities($contentData['title']) . ' - ' . htmlentities($cmsConfigArray['page_title']), $contents);
         $contents = str_replace('%path%', '', $contents);
-        if($this->templateName)
-        $contents = parseLinks($contents,$templatePath);
+        if($this->templateName||$forceLinkParsing)
+            $contents = parseLinks($contents,$templatePath);
         
         
         //parse widget areas
         if($parseAdmin == true)
             $contents = preg_replace("/%widget_area\[(.+?)\]%/", '<div class="cms_widget_area" data-textarea-id="$1"></div>', $contents);
-        else
+        else{
+            if($this->templateName){
             $contents = preg_replace("/%widget_area\[(.+?)\]%/e", "widget::generateWidgetArea('".$contentData['id']."','$1')", $contents);
-        
+            }
+        }
         //add widget to contents
         $site_content = preg_replace("/%widget\[(.+?)\]%/e", "widget::generateWidget('$1')", $site_content);
         
@@ -221,18 +246,32 @@ class template{
         }
         
         if(isset($templateConfig['navigations'])){
-        foreach($templateConfig['navigations'] AS $navigationData){
-            $nav_id = $navigationData['navigation_id'];
-            $db = new db();
-            $navData = $db->select('navigations', array('template_navigation_id', $nav_id));
-            if(isset($navData['id'])){
-                $contents = str_replace("%navigation[$nav_id]%", $this->generateNavigation($navData['id']), $contents);
-            }else{
-                $contents = str_replace("%navigation[$nav_id]%", $this->generateNavigation(), $contents);
+            foreach($templateConfig['navigations'] AS $navigationData){
+                $nav_id = $navigationData['navigation_id'];
+                $db = new db();
+                $navData = $db->select('navigations', array('template_navigation_id', $nav_id));
+                if(isset($navData['id'])){
+                    $contents = str_replace("%navigation[$nav_id]%", $this->generateNavigation($navData['id']), $contents);
+                }else{
+                    $contents = str_replace("%navigation[$nav_id]%", $this->generateNavigation(), $contents);
+                }
+
             }
-            
         }
+        if(isset($templateConfig['template_vars'])){
+            if(isset($contentData['template_vars'])){
+                $varValues = json_decode($contentData['template_vars']);
+                foreach($templateConfig['template_vars'] AS $templateVarData){
+                    $var_id = $templateVarData['var_id'];
+                    if(isset($varValues[$var_id]))
+                        $var_value = $varValues[$var_id];
+                    else
+                        $var_value = $templateVarData['var_default'];
+                    $contents = str_replace("%var[".$templateVarData['var_id']."]%", $var_value, $contents);
+                }
+            }
         }
+        
         $contents = str_replace("%content%", $site_content, $contents);
         
         $contents = str_replace("%content_title%", $contentData['title'], $contents);

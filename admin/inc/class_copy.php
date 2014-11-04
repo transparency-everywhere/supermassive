@@ -1,5 +1,36 @@
 <?php
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+/**
+ * Description of class_cms
+ *
+ * @author Transparency Everywhere
+ */
 include('functions.php');
+
+function getBasePathFromUrl($url){
+    $url_info = parse_url($url);
+    return $url_info['host'];
+}
+
+function curler($url){
+    $c = curl_init($url);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    //curl_setopt(... other options you want...)
+
+    $html = curl_exec($c);
+
+    // Get the status code
+    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+    
+    return array('html'=>$html, 'status'=>$status);
+}
+
 function rel2abs($rel, $base)
 {   
     $scheme = 'http';
@@ -206,6 +237,9 @@ public function crawlWebsiteLinks($link, $crawledLinks=NULL){
             $meta = $metas->item($i);
             if($meta->getAttribute('name') == 'description')
                 $description = $meta->getAttribute('content');
+            else 
+                $description = '';
+            
             if($meta->getAttribute('name') == 'keywords')
                 $keywords = $meta->getAttribute('content');
         }
@@ -213,44 +247,37 @@ public function crawlWebsiteLinks($link, $crawledLinks=NULL){
     }
 
 
-    function createContentFromURL($url, $parent_navigation_id){
-        $c = curl_init($url);
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt(... other options you want...)
-
-        $html = curl_exec($c);
-
-        if (curl_error($c))
-            die(curl_error($c));
-
-        // Get the status code
-        $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+    function createContentFromURL($url){
+        $curlArray = curler($url);
+        
+        $status = $curlArray['status'];
+        $html = $curlArray['html'];
         if($status == 200){
-            
+            $basepath = getBasePathFromUrl($url);
             $pageInfo = $this->getMeta($html);
             
-            $requiredFiles = preg_match('/< *script[^>]*src *= *["\']?([^"\']*)/i', $html, $matches);
-            var_dump($requiredFiles);
             
-            preg_match('/< *link[^>]*href *= *["\']?([^"\']*)/i', $html, $matches);
-            var_dump($matches);
+            $html = preg_replace('/< *script[^>]*src *= *["\']?([^"\']*)/s', '<script src="http://'.$basepath.'/'."$1",$html);
+            //var_dump($requiredFiles);
+            
+            $html = preg_replace('/< *link[^>]*href *= *["\']?([^"\']*)/i', '<link href="http://'.$basepath.'/'."$1",$html);
+            var_dump($html);
+            
+            //echo 'asd';
             
             $content = new content();
-            $content->create(1, $pageInfo['title'], $pageInfo['keywords'],  $pageInfo['description'], base64_encode($html), -1);
             
             
-            
+            $content->create(1, $pageInfo['title'], $pageInfo['keywords'], $pageInfo['description'], base64_encode($html), -1, true, null);
             
         }else{
             echo 'error 404';
         }
 
-        curl_close($c);
-        }
-
     }
-$crawler = new Crawler('http://www.ootpdevelopments.com');
-echo($crawler->createContentFromURL('http://www.spiegel.de'));
+}
+$crawler = new Crawler('http://www.google.com');
+echo($crawler->createContentFromURL('http://transparency-everywhere.com'));
 
 
 

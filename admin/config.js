@@ -38,4 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.AllowedContent = true;
 
 	config.baseHref = '../';
+        
+        config.entities = false;
+        config.basicEntities = false;
 };

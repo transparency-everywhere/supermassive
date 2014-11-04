@@ -20,7 +20,7 @@ class content{
         }
             
     }
-    function create($parent_navigation_id, $title, $keywords, $description, $content, $template=NULL, $active=true){
+    function create($parent_navigation_id, $title, $keywords, $description, $content, $template=NULL, $active=true, $template_vars='NULL', $basepath=''){
         $userGroups = new usergroups();
         if($userGroups->authorize('createContents')){ 
  	if($template == NULL){
@@ -38,6 +38,9 @@ class content{
             $contentData['template'] = $template;
             $contentData['active'] = $active;
             $contentData['order_id'] = ($orderId+1);
+            $contentData['template_vars'] = $template_vars;
+            if(!empty($basepath))
+                $contentData['basepath'] = $basepath;
 
             $db = new db();
             $contentId = $db->insert('contents', $contentData);
@@ -51,7 +54,7 @@ class content{
             return $contentId;
         }
     }
-    function update($parent_navigation_id, $title, $keywords, $description, $content, $template, $active){
+    function update($parent_navigation_id, $title, $keywords, $description, $content, $template, $active, $template_vars){
         $userGroups = new usergroups();
         if($userGroups->authorize('updateContents')){
             //set array
@@ -63,6 +66,7 @@ class content{
             $contentData['template'] = $template;
             $contentData['active'] = $active;
             $contentData['id'] = $this->id;
+            $contentData['template_vars'] = $template_vars;
 
             //delete old html file
             $oldContentData = $this->select($this->id);

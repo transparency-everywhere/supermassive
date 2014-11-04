@@ -120,8 +120,17 @@ class cms{
         
         }
     }
-    function checkForUpdates(){
+    function updateRequired(){
+        $ch = curl_init("http://http://updates.transparency-everywhere.com/products/supermassive/stable/");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+        $version = curl_exec($ch);
+        curl_close($ch);
         
+        if($version == $this->getVersion())
+            return true;
+        else
+            return false;
     }
     function installUpdate(){
         
@@ -296,7 +305,7 @@ class cms{
     //        i = 0;
             foreach ($allContents as $value) {
                 $class_content = new content($value['id']);
-                $class_content->update($value['parent_navigation_id'], $value['title'], $value['keywords'], $value['description'], $value['content'], $newTemplateId, $value['active']);
+                $class_content->update($value['parent_navigation_id'], $value['title'], $value['keywords'], $value['description'], $value['content'], $newTemplateId, $value['active'], $value['template_vars']);
             }
 
             $this->parseEverything();

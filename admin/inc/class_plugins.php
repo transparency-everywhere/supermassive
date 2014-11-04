@@ -112,7 +112,7 @@ class plugins{
             }
         }
    }
-    function add($file_id){
+   public function add($file_id){
         
         $media = new media();
         $filename = $media->idToFilename($file_id);
@@ -120,25 +120,27 @@ class plugins{
         $zip = new ZipArchive;
         $res = $zip->open(dirname(__FILE__) . '/../../assets/'.$filename);
         if ($res === TRUE) {
-          mkdir(dirname(__FILE__) . '/../../plugins/temp');
-          $zip->extractTo(dirname(__FILE__) . '/../../plugins/temp');
-          $zip->close();
-          
-          $plugin = new plugin('temp');
-          $config = $plugin->getConfig();
-          $plugin_title = $config['plugin_name'];
-          
-          //create template folder
-          //mkdir(dirname(__FILE__) . '/../../template/'.$template_title);
-          
-          //move files to template folder
-          rename(dirname(__FILE__) . '/../../plugins/temp/', dirname(__FILE__) . '/../../plugins/'.$plugin_title.'/');
-          //unlink temp folder
-          $db = new db();
-          echo $db->insert('plugins', array('title'=>$plugin_title));
+        mkdir(dirname(__FILE__) . '/../../plugins/temp');
+        $zip->extractTo(dirname(__FILE__) . '/../../plugins/temp');
+        $zip->close();
+
+        $plugins = new plugins('temp');
+        $config = $plugins->getConfig();
+        $plugin_folder_name = $config['plugin_folder_name'];
+        $plugin_name = $config['plugin_name'];
+
+        //create template folder
+        //mkdir(dirname(__FILE__) . '/../../template/'.$template_title);
+
+        //move files to template folder
+        rename(dirname(__FILE__) . '/../../plugins/temp/', dirname(__FILE__) . '/../../plugins/'.$plugin_folder_name.'/');
+        
+        //install uploaded plugin
+        $this->plugin_folder_name = $plugin_folder_name;
+        $this->install();
           
         } else {
-          echo 'doh!';
+          echo 'An error occured!';
           echo $res;
           
         }

@@ -16,11 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Datenbank: `cms`
---
-CREATE DATABASE IF NOT EXISTS `cms` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cms`;
 
 -- --------------------------------------------------------
 
@@ -40,15 +35,18 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `timestamp_updated` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `order_id` int(11) NOT NULL,
+  `template_vars` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `contents`
 --
 
-INSERT INTO `contents` (`id`, `parent_navigation_id`, `title`, `keywords`, `content`, `template`, `timestamp_created`, `timestamp_updated`, `active`, `order_id`) VALUES
-(1, 1, 'Start', '', 'PGgyPlRoaXMgaXMgdGhlIGZpcnN0IHBhZ2Ugb2YgeW91ciB3ZWJzaXRlLjwvaDI+Cgo8cD5UbyBjaGFuZ2UgdGhpcyBjb250ZW50IG9yIGFkZCBuZXcgb25lcyBvcGVuIHRoZSBhZG1pbiBwYW5lbC48L3A+Cg==', 1, 0, 0, 1, 1);
+INSERT INTO `contents` (`id`, `parent_navigation_id`, `title`, `keywords`, `description`, `content`, `template`, `timestamp_created`, `timestamp_updated`, `active`, `order_id`, `template_vars`) VALUES
+(1, 1, 'Start', '', 'This is the first page of your website. To change this content or add new ones open the admin panel.', 'PHAgaWQ9InRpdGxlIj5GZWF0dXJlczwvcD48ZGl2IGNsYXNzPSJjbGVhcmZpeCIgaWQ9InNlcGVyYXRvciI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9ImNsZWFyZml4IiBpZD0iYm94Ij48cCBpZD0iaGVhZGxpbmUiPldlbGNvbWUgdG8gdGhlIFVsYXMgdGVtcGxhdGU8L3A+PHAgaWQ9InAiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQuIE1hZWNlbmFzIG1ldHVzIG51bGxhLCBhIHNlZCwgZGlnbmlzc2ltIHByZXRpdW0gbnVuYy4gTmFtIGV0IGxhY3VzIG5lcXVlLiBVdCBlbmltIG1hc3NhLCBzb2RhbGVzIHRlbXBvciBjb252YWxsaXMgZXQuPC9wPjwvZGl2PjxkaXYgY2xhc3M9ImNsZWFyZml4IiBpZD0iYm94MSI+PGltZyBjbGFzcz0iaW1hZ2UiIGlkPSJpbWFnZTEiIGRhdGEtY2tlLXNhdmVkLXNyYz0idGVtcGxhdGUvVWxhcy9pbWcvaWNvbl9zdGFyLnBuZyIgc3JjPSJ0ZW1wbGF0ZS9VbGFzL2ltZy9pY29uX3N0YXIucG5nIj48cCBpZD0icDEiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZXRldHVyIHNhZGlwc2NpbmcgZWxpdHIsIHNlZCBkaWFtIG5vbnVteSBlaXJtb2QgdGVtcG9yIGludmlkdW50IHV0IGxhYm9yZSBldCBkb2xvcmUgbWFnbmEgYWxpcXV5YW0gZXJhdCwgc2VkIGRpYW0gdm9sdXB0dWEuIEF0IHZlcm8gZW9zIGV0IGFjY3VzYW0gZXQganVzdG8gZHVvIGRvbG9yZXMgZXQgZWEgcmVidW0uIFN0ZXQgY2xpdGEga2FzZCBndWJlcmdyZW4sIG5vIHNlYSB0YWtpbWF0YSBzYW5jdHVzIGVzdCBMb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldC48L3A+PC9kaXY+PGRpdiBjbGFzcz0iY2xlYXJmaXgiIGlkPSJib3gyIj48aW1nIGNsYXNzPSJpbWFnZSIgaWQ9ImltYWdlMiIgZGF0YS1ja2Utc2F2ZWQtc3JjPSJ0ZW1wbGF0ZS9VbGFzL2ltZy9pY29uX3N0YXIucG5nIiBzcmM9InRlbXBsYXRlL1VsYXMvaW1nL2ljb25fc3Rhci5wbmciPjxwIGlkPSJwMiI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNldGV0dXIgc2FkaXBzY2luZyBlbGl0ciwgc2VkIGRpYW0gbm9udW15IGVpcm1vZCB0ZW1wb3IgaW52aWR1bnQgdXQgbGFib3JlIGV0IGRvbG9yZSBtYWduYSBhbGlxdXlhbSBlcmF0LCBzZWQgZGlhbSB2b2x1cHR1YS4gQXQgdmVybyBlb3MgZXQgYWNjdXNhbSBldCBqdXN0byBkdW8gZG9sb3JlcyBldCBlYSByZWJ1bS4gU3RldCBjbGl0YSBrYXNkIGd1YmVyZ3Jlbiwgbm8gc2VhIHRha2ltYXRhIHNhbmN0dXMgZXN0IExvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LjwvcD48L2Rpdj48ZGl2IGNsYXNzPSJjbGVhcmZpeCIgaWQ9ImJveDMiPjxpbWcgY2xhc3M9ImltYWdlIiBpZD0iaW1hZ2UzIiBkYXRhLWNrZS1zYXZlZC1zcmM9InRlbXBsYXRlL1VsYXMvaW1nL2ljb25fc3Rhci5wbmciIHNyYz0idGVtcGxhdGUvVWxhcy9pbWcvaWNvbl9zdGFyLnBuZyI+PHAgaWQ9InAzIj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2V0ZXR1ciBzYWRpcHNjaW5nIGVsaXRyLCBzZWQgZGlhbSBub251bXkgZWlybW9kIHRlbXBvciBpbnZpZHVudCB1dCBsYWJvcmUgZXQgZG9sb3JlIG1hZ25hIGFsaXF1eWFtIGVyYXQsIHNlZCBkaWFtIHZvbHVwdHVhLiBBdCB2ZXJvIGVvcyBldCBhY2N1c2FtIGV0IGp1c3RvIGR1byBkb2xvcmVzIGV0IGVhIHJlYnVtLiBTdGV0IGNsaXRhIGthc2QgZ3ViZXJncmVuLCBubyBzZWEgdGFraW1hdGEgc2FuY3R1cyBlc3QgTG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQuPC9wPjwvZGl2PjxkaXYgY2xhc3M9ImNsZWFyZml4IiBpZD0iYm94NCI+PGltZyBjbGFzcz0iaW1hZ2UiIGlkPSJpbWFnZTQiIGRhdGEtY2tlLXNhdmVkLXNyYz0idGVtcGxhdGUvVWxhcy9pbWcvaWNvbl9zdGFyLnBuZyIgc3JjPSJ0ZW1wbGF0ZS9VbGFzL2ltZy9pY29uX3N0YXIucG5nIj48cCBpZD0icDQiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZXRldHVyIHNhZGlwc2NpbmcgZWxpdHIsIHNlZCBkaWFtIG5vbnVteSBlaXJtb2QgdGVtcG9yIGludmlkdW50IHV0IGxhYm9yZSBldCBkb2xvcmUgbWFnbmEgYWxpcXV5YW0gZXJhdCwgc2VkIGRpYW0gdm9sdXB0dWEuIEF0IHZlcm8gZW9zIGV0IGFjY3VzYW0gZXQganVzdG8gZHVvIGRvbG9yZXMgZXQgZWEgcmVidW0uIFN0ZXQgY2xpdGEga2FzZCBndWJlcmdyZW4sIG5vIHNlYSB0YWtpbWF0YSBzYW5jdHVzIGVzdCBMb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldC48L3A+PC9kaXY+PGRpdiBjbGFzcz0iY2xlYXJmaXgiIGlkPSJib3g1Ij48YnI+PC9kaXY+', 1, 0, 0, 0, 1, '[null,"undefined","undefined","undefined","undefined"]'),
+(2, 1, 'Content', '', 'This is a content', 'PHAgaWQ9InRpdGxlIj5UaGlzIGlzIGEgY29udGVudCBleGFtcGxlPC9wPjxkaXYgY2xhc3M9ImNsZWFyZml4IiBpZD0ic2VwZXJhdG9yIj48YnI+PC9kaXY+PGRpdiBjbGFzcz0iY2xlYXJmaXgiIGlkPSJib3giPjxwIGlkPSJoZWFkbGluZSI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQ8L3A+PHAgaWQ9InAiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQuIE1hZWNlbmFzIG1ldHVzIG51bGxhLCBhIHNlZCwgZGlnbmlzc2ltIHByZXRpdW0gbnVuYy4gTmFtIGV0IGxhY3VzIG5lcXVlLiBVdCBlbmltIG1hc3NhLCBzb2RhbGVzIHRlbXBvciBjb252YWxsaXMgZXQuPC9wPjwvZGl2PjxkaXYgY2xhc3M9ImNsZWFyZml4IiBpZD0iYm94MSI+PGltZyBjbGFzcz0iaW1hZ2UiIGlkPSJpbWFnZTEiIGRhdGEtY2tlLXNhdmVkLXNyYz0idGVtcGxhdGUvVWxhcy9pbWcvRm90b2xpYV8xMTQ3MzUwMl9NLmpwZyIgc3JjPSJ0ZW1wbGF0ZS9VbGFzL2ltZy9Gb3RvbGlhXzExNDczNTAyX00uanBnIj4gPGltZyBjbGFzcz0iaW1hZ2UiIGlkPSJpbWFnZTIiIGRhdGEtY2tlLXNhdmVkLXNyYz0idGVtcGxhdGUvVWxhcy9pbWcvRm90b2xpYV8xNjIzODUwNl9NLmpwZyIgc3JjPSJ0ZW1wbGF0ZS9VbGFzL2ltZy9Gb3RvbGlhXzE2MjM4NTA2X00uanBnIj48L2Rpdj48cCBpZD0icDEiPjxzcGFuIGlkPSJ0ZXh0c3BhbiI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNldGV0dXIgc2FkaXBzY2luZyBlbGl0ciwgc2VkIGRpYW0gbm9udW15IGVpcm1vZCB0ZW1wb3IgaW52aWR1bnQgdXQgbGFib3JlIGV0IGRvbG9yZSBtYWduYSBhbGlxdXlhbSBlcmF0LCBzZWQgZGlhbSB2b2x1cHR1YS4gQXQgdmVybyBlb3MgZXQgYWNjdXNhbSBldCBqdXN0byBkdW8gZG9sb3JlcyBldCBlYSByZWJ1bS4gU3RldCBjbGl0YSBrYXNkIGd1YmVyZ3Jlbiwgbm8gc2VhIHRha2ltYXRhIHNhbmN0dXMgZXN0IExvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LiBMb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2V0ZXR1ciBzYWRpcHNjaW5nIGVsaXRyLCBzZWQgZGlhbSBub251bXkgZWlybW9kIHRlbXBvciBpbnZpZHVudCB1dCBsYWJvcmUgZXQgZG9sb3JlIG1hZ25hIGFsaXF1eWFtIGVyYXQsIHNlZCBkaWFtIHZvbHVwdHVhLjwvc3Bhbj48YnI+PGJyPjxzcGFuIGlkPSJ0ZXh0c3BhbjEiPkxvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LCBjb25zZXRldHVyIHNhZGlwc2NpbmcgZWxpdHIsIHNlZCBkaWFtIG5vbnVteSBlaXJtb2QgdGVtcG9yIGludmlkdW50IHV0IGxhYm9yZSBldCBkb2xvcmUgbWFnbmEgYWxpcXV5YW0gZXJhdCwgc2VkIGRpYW0gdm9sdXB0dWEuJm5ic3A7PC9zcGFuPjxicj48YnI+PHNwYW4gaWQ9InRleHRzcGFuMiI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNldGV0dXIgc2FkaXBzY2luZyBlbGl0ciwgc2VkIGRpYW0gbm9udW15IGVpcm1vZCB0ZW1wb3IgaW52aWR1bnQgdXQgbGFib3JlIGV0IGRvbG9yZSBtYWduYSBhbGlxdXlhbSBlcmF0LCBzZWQgZGlhbSB2b2x1cHR1YS4gQXQgdmVybyBlb3MgZXQgYWNjdXNhbSBldCBqdXN0byBkdW8gZG9sb3JlcyBldCBlYSByZWJ1bS4gU3RldCBjbGl0YSBrYXNkIGd1YmVyZ3Jlbiwgbm8gc2VhIHRha2ltYXRhIHNhbmN0dXMgZXN0IExvcmVtIGlwc3VtIGRvbG9yIHNpdCBhbWV0LiBMb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2V0ZXR1ciBzYWRpcHNjaW5nIGVsaXRyLCBzZWQgZGlhbSBub251bXkgZWlybW9kIHRlbXBvciBpbnZpZHVudCB1dCBsYWJvcmUgZXQgZG9sb3JlIG1hZ25hIGFsaXF1eWFtIGVyYXQsIHNlZCBkaWFtIHZvbHVwdHVhLjwvc3Bhbj48L3A+PGRpdiBjbGFzcz0iY2xlYXJmaXgiIGlkPSJTRVBFUkFUT1IiPjxicj48L2Rpdj4=', 1, 0, 0, 0, 2, '[null,"Ulas","A template for the supermassive cms","CREATE A BEAUTIFUL RESPONSIVE WEBSITE AT THE SPEED OF LIGHT","Ulas ist a free responsive html 5 template that comes with supermassive cms.Discover the many ways to customize ulas to create the website of your dreams!"]'),
+(3, 2, 'License', '', 'The supermassive CMS is open-sourced software licensed under theÂ Creative Commons Attribution 4.0 In', 'PHA+VGhlIHN1cGVybWFzc2l2ZSBDTVMgaXMgb3Blbi1zb3VyY2VkIHNvZnR3YXJlIGxpY2Vuc2VkIHVuZGVyIHRoZSZuYnNwO0NyZWF0aXZlIENvbW1vbnMgQXR0cmlidXRpb24gNC4wIEludGVybmF0aW9uYWwgUHVibGljIExpY2Vuc2UuPC9wPg==', 1, 0, 0, 0, 3, '[null,"Ulas","A template for the supermassive cms","CREATE A BEAUTIFUL RESPONSIVE WEBSITE AT THE SPEED OF LIGHT","Ulas ist a free responsive html 5 template that comes with supermassive cms.Discover the many ways to customize ulas to create the website of your dreams!"]');
 
 -- --------------------------------------------------------
 
@@ -97,6 +95,9 @@ CREATE TABLE IF NOT EXISTS `navigation_links` (
   `order_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `navigation_links` (`id`, `navigation_id`, `target_type`, `target_id`, `caption`, `order_id`) VALUES
+(1, 2, 'content', 1, 'Start', 1),
+(2, 2, 'content', 2, 'Content', 2);
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `templates` (
 --
 
 INSERT INTO `templates` (`id`, `title`) VALUES
-(1, 'standard');
+(1, 'Ulas');
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,14 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `type` varchar(255) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+
+INSERT INTO `widgets` (`id`, `title`, `type`, `content`) VALUES
+(1, 'Text Widget', 'HTML', 'TEXT WIDGET<br><br>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.');
+INSERT INTO `widgets` (`id`, `title`, `type`, `content`) VALUES
+(2, 'License', 'HTML', 'Copyright 2014 &#x2b;&#x2b;&#x2b; ulas template powered by supermassive cms &#x2b;&#x2b;&#x2b; Login<br />image credits&#x3a; ULAS J1120&#x2b;0641, author ESO&#x2f;M. Kornmesser, source www.eso.org&#x2f;public&#x2f;images&#x2f;eso1122a');
+
 
 -- --------------------------------------------------------
 
@@ -249,6 +257,12 @@ CREATE TABLE IF NOT EXISTS `widgets_in_contents` (
   `template_widget_area_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `widgets_in_contents` (`widget_id`, `content_id`, `template_widget_area_id`) VALUES
+(2, 1, 4),
+(2, 2, 4),
+(1, 1, 2),
+(1, 1, 3),
+(1, 2, 2);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

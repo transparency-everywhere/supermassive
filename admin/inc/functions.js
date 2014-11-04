@@ -1,8 +1,22 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*
+This file is published by transparency-everywhere with the best deeds.
+Check transparency-everywhere.com for further information.
+
+Licensed under the CC License, Version 4.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://creativecommons.org/licenses/by/4.0/legalcode
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+@author nicZem for tranpanrency-everywhere.com
+*/
 
 
 
@@ -33,11 +47,12 @@ $(document).ready(function() {
                         menuHTML += '<img src="img/logo.png" style="width:175px;margin-left: 2px;margin-top: 6px;"/>';
                         menuHTML += '<ul>';
                                 menuHTML += '<li class="userField">'+adminPanel.generateUserNavField()+'</li>';
+                                menuHTML += '<li class="updateField"></li>';
                                 if(currentUser.hasRight('readUsers')){
                                     menuHTML += '<li class="headline">Users';
                                             menuHTML += '<ul>';
-                                                    menuHTML += '<li onclick="adminPanel.showCreateUserForm();">Create User</li>';
-                                                    menuHTML += '<li onclick="adminPanel.showUserOverview();">Show Overview</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showCreateUserForm();">Create user</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showUserOverview();">Show overview</li>';
                                             menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
@@ -45,8 +60,8 @@ $(document).ready(function() {
                                 if(currentUser.hasRight('readUsergroups')){
                                     menuHTML += '<li class="headline">Usergroups';
                                         menuHTML += '<ul>';
-                                            menuHTML += '<li onclick="adminPanel.showCreateUsergroupForm();">Create Usergroup</li>';
-                                            menuHTML += '<li onclick="adminPanel.showUsergroupOverview();">Show Overview</li>';
+                                            menuHTML += '<li onclick="adminPanel.showCreateUsergroupForm();">Create usergroup</li>';
+                                            menuHTML += '<li onclick="adminPanel.showUsergroupOverview();">Show overview</li>';
                                         menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
@@ -57,18 +72,17 @@ $(document).ready(function() {
                                 if(currentUser.hasRight('seeNavigations')){
                                     menuHTML += '<li class="headline">Navigations';
                                         menuHTML += '<ul>';
-                                                menuHTML += '<li onclick="adminPanel.showCreateNavigationForm();">Create Navigations</li> ';
-                                                menuHTML += '<li onclick="adminPanel.showNavigationOverview();">Show Overview</li>';
+                                                menuHTML += '<li onclick="adminPanel.showCreateNavigationForm();">Create navigations</li> ';
+                                                menuHTML += '<li onclick="adminPanel.showNavigationOverview();">Show overview</li>';
                                         menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
                                 if(currentUser.hasRight('seeContents')){
                                     menuHTML += '<li class="headline">Contents';
                                             menuHTML += '<ul>';
-                                                    menuHTML += '<li onclick="adminPanel.showCreateContentForm();">Create Content</li>';
-                                                    menuHTML += '<li onclick="adminPanel.showContentOverview();">Show Overview</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showCreateContentForm();">Create content</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showContentOverview();">Show overview</li>';
                                                     menuHTML += '<li class="spacer"></li>';
-                                                    menuHTML += '<li onclick="adminPanel.showCreateContentForm();">Startpage</li>';
                                             menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
@@ -76,17 +90,25 @@ $(document).ready(function() {
                                 if(currentUser.hasRight('readWidgets')){
                                     menuHTML += '<li class="headline">Widgets';
                                             menuHTML += '<ul>';
-                                                    menuHTML += '<li onclick="adminPanel.showCreateWidgetForm();">Create Widget</li>';
-                                                    menuHTML += '<li onclick="adminPanel.showWidgetOverview();">Show Overview</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showCreateWidgetForm();">Create widget</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showWidgetOverview();">Show overview</li>';
                                             menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
-                                
+                                if(currentUser.hasRight('seePlugins')){
+                                    menuHTML += '<li class="headline">Plugins';
+                                            menuHTML += '<ul>';
+                                                    menuHTML += '<li onclick="adminPanel.showAddPluginForm();">Install plugin</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showPluginOverview();">Show overview</li>';
+                                                    menuHTML += '<li class="spacer"></li>';
+                                            menuHTML += '</ul>';
+                                    menuHTML += '</li>';
+                                }
                                 if(currentUser.hasRight('seeFiles')){
                                     menuHTML += '<li class="headline">Files';
                                             menuHTML += '<ul>';
-                                                    menuHTML += '<li onclick="adminPanel.showUploadFileForm();">Upload File</li>';
-                                                    menuHTML += '<li onclick="adminPanel.showFileOverview();">Show Overview</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showUploadFileForm();">Upload file</li>';
+                                                    menuHTML += '<li onclick="adminPanel.showFileOverview();">Show overview</li>';
                                                     menuHTML += '<li class="spacer"></li>';
                                             menuHTML += '</ul>';
                                     menuHTML += '</li>';
@@ -94,17 +116,17 @@ $(document).ready(function() {
                                 if(currentUser.hasRight('seeTemplates')){
                                     menuHTML += '<li class="headline">Templates';
                                             menuHTML += '<ul>';
-                                                    menuHTML += '<li onclick="adminPanel.showChangeTemplateForm();">Change Template</li>';
-                                                    menuHTML += '<li onclick="adminPanel.showTemplateOverview();">Show Overview</li>';
-                                                    menuHTML += '<li class="spacer"></li>';
+                                                menuHTML += '<li onclick="adminPanel.showAddTemplateForm();">Install template</li>';
+                                                menuHTML += '<li onclick="adminPanel.showChangeTemplateForm();">Change template</li>';
+                                                menuHTML += '<li onclick="adminPanel.showTemplateOverview();">Show overview</li>';
+                                                menuHTML += '<li class="spacer"></li>';
                                             menuHTML += '</ul>';
                                     menuHTML += '</li>';
                                 }
                                 menuHTML += '<li class="headline">Settings';
                                         menuHTML += '<ul>';
                                                 menuHTML += '<li onclick="adminPanel.showUpdateCmsConfigForm();">General</li>';
-                                                menuHTML += '<li onclick="adminPanel.showUpdateHomePageForm();">Starpage</li>';
-                                                menuHTML += '<li onclick="adminPanel.showChangeTemplateForm();">Change Template</li>';
+                                                menuHTML += '<li onclick="adminPanel.showUpdateHomePageForm();">Startpage</li>';
                                         menuHTML += '</ul>';
                                 menuHTML += '</li>';
                             menuHTML += '</ul>'
@@ -127,12 +149,11 @@ $(document).ready(function() {
 function addAdminLinks(){
     if(!window.menuIsLoading){
         $('.cms_navigation ul').each(function(){
-            if((!$(this).hasClass('dropdown-menu')) && (!$(this).hasClass('menu-added'))){
+            if((!$(this).hasClass('menuList')) && (!$(this).hasClass('menu-added'))){
                 //console.log($(this).hasClass('dropdown-menu'));
                 $(this).addClass('menu-added');
                 var id = $(this).data('id');
-                console.log('id'+id);
-                $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul> <li onclick="adminPanel.showCreateContentForm(\''+id+'\');">Create Content</li> <li onclick="adminPanel.showCreateNavigationForm(\''+id+'\');">Create Navigation</li> </ul> </div>');
+                $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul class="menuList"> <li onclick="adminPanel.showCreateContentForm(\''+id+'\');">Create Content</li> <li onclick="adminPanel.showCreateNavigationForm(\''+id+'\');">Create Navigation</li> </ul> </div>');
                 //console.log('loading nav');
             }
         });
@@ -149,9 +170,11 @@ function addAdminLinks(){
                     e.preventDefault();
                     adminPanel.showUpdateContentForm(id);
                 });
+                
+                if(!$(this).hasClass('menu-added'))
+                    $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul class="menuList"> <li onclick="adminPanel.showUpdateContentForm(\''+id+'\');">Update Content</li> <li onclick="adminPanel.verifyContentRemoval(\''+id+'\');">Delete Content</li>  <li onclick="adminPanel.showAddContentToNavigationForm(\''+id+'\');">Add to Navigation</li> </ul> </div>');
 
-                $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul> <li onclick="adminPanel.showUpdateContentForm(\''+id+'\');">Update Content</li> <li onclick="adminPanel.verifyContentRemoval(\''+id+'\');">Delete Content</li>  <li onclick="adminPanel.showAddContentToNavigationForm(\''+id+'\');">Add to Navigation</li> </ul> </div>');
-
+                $(this).addClass('menu-added');
             }else if(type === 'navigation'){
 
                 $(this).children('a').click(function(e){
@@ -159,7 +182,10 @@ function addAdminLinks(){
                     alert(id);
                 });
 
-                $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul> <li onclick="adminPanel.showCreateContentForm(\''+id+'\');">Create Content</li> <li onclick="adminPanel.showCreateNavigationForm(\''+id+'\');">Create Navigation</li> </ul> </div>');
+                if(!$(this).hasClass('menu-added'))
+                    $(this).append('<div class="cms_dropdown"> <header> <img src="img/options_icon.png"/> </header> <ul class="menuList"> <li onclick="adminPanel.showCreateContentForm(\''+id+'\');">Create Content</li> <li onclick="adminPanel.showCreateNavigationForm(\''+id+'\');">Create Navigation</li> </ul> </div>');
+                
+                $(this).addClass('menu-added');
             }
 
         });
@@ -439,8 +465,8 @@ var files = new function(){
 };
 
 var contents = new function(){
-    this.create = function(parent_navigation_id, title, keywords, description, content, template, active){
-        $.post( "api.php?action=createContent", { parent_navigation_id:  parent_navigation_id, title: title, keywords: keywords, description: description, content: content, template: template, active: active }, function(data){
+    this.create = function(parent_navigation_id, title, keywords, description, content, template, active, templateVars){
+        $.post( "api.php?action=createContent", { parent_navigation_id:  parent_navigation_id, title: title, keywords: keywords, description: description, content: content, template: template, active: active, template_vars: templateVars }, function(data){
             console.log(data);
         });
  
@@ -459,9 +485,9 @@ var contents = new function(){
         return result;
  
     };
-    this.update = function(content_id, parent_navigation_id, title, keywords, description, content, template, active){
+    this.update = function(content_id, parent_navigation_id, title, keywords, description, content, template, active, templateVars){
         var content = base64_encode(content);
-        $.post( "api.php?action=updateContent", { content_id: content_id, parent_navigation_id:  parent_navigation_id, title: title, keywords: keywords, description: description, content: content, template: template, active: active }, function(data){
+        $.post( "api.php?action=updateContent", { content_id: content_id, parent_navigation_id:  parent_navigation_id, title: title, keywords: keywords, description: description, content: content, template: template, active: active, template_vars: templateVars }, function(data){
             console.log(data);
         });
  
@@ -658,6 +684,26 @@ var navigation_links = new function(){
 };
 
 var cms = new function(){
+    this.checkForUpdates = function(){
+        var result;
+        $.ajax({
+            type: 'POST',
+            url: "api.php?action=updateRequired",
+            success:function(data){
+                result = data;
+                if(result.length === 0)
+                    result = 0;
+            },
+            async:false
+        });
+        if(parseInt(result)){
+            //update required
+            $('.updateField').html('update required!');
+            $('.updateField').show();
+            
+        }
+        return parseInt(result);
+    };
     this.getConfig = function(){
         var result;
         $.ajax({
@@ -751,7 +797,7 @@ var plugins = new function(){
         }
         
     };
-    this.addTemplate = function(file_id){
+    this.addPlugin = function(file_id){
         
         var result;
         $.ajax({
@@ -850,19 +896,54 @@ var gui = new function(){
         }
     };
     this.generateField = function(fieldData, tr_class){
-        if(typeof fieldData['value'] === 'undefined')
+        if((typeof fieldData['value'] === 'undefined')||(fieldData['value'] == 'html')){
             fieldData['value'] = '';
-        else{
+        }else{
             var temp;
             temp = String(fieldData['value']);
-            fieldData['value'] = temp.replace(/\"/g, '&quot;');
+            if(fieldData['type'] != 'wysiwyg')
+                fieldData['value'] = temp.replace(/\"/g, '&quot;');
         }
+        
+        if(typeof fieldData['appendix'] === 'undefined'){
+            fieldData['appendix'] = '';
+        }
+            
+        if(fieldData['type'] === 'text')
+            fieldData['type'] = 'textarea';
             
         var mainHTML = '';
         mainHTML += '<tr class='+tr_class+'>';
-        if(fieldData['type'] !== 'wysiwyg')
-            mainHTML += '<td>&nbsp;' + fieldData.caption + ':</td><td>&nbsp;</td>';
+        
+        
+        console.log(fieldData['type']+fieldData['value']);
+        
+                    //caption
+                    switch(fieldData['type']){
+                        case'text':
+                            mainHTML += '<td>' + fieldData.caption + '</td><td>&nbsp;</td>';
+                            break;   
+                        case'wysiwyg':
+                            break;
+                        case'checkbox':
+                            mainHTML += '<td>' + fieldData.caption + '</td><td>&nbsp;</td>';
+                            break;
+                        case'dropdown':
+                            mainHTML += '<td>' + fieldData.caption + '</td><td>&nbsp;</td>';
+                            break;
+                        case'password':
+                            mainHTML += '<td>' + fieldData.caption + '</td><td>&nbsp;</td>';
+                            break;
+                        case'button':
+                            mainHTML += '<td>' + fieldData.caption + '</td><td>&nbsp;</td>';
+                            break;
+                        default:
+                            mainHTML += '<td colspan="4">' + fieldData.caption + '</td></tr><tr class='+tr_class+'>';
+                            break;
+                         
+                    }
 
+                    //body
                     switch(fieldData['type']){
                         case 'text':
                             if(!fieldData['value']){
@@ -876,13 +957,13 @@ var gui = new function(){
                                     disabled = '';
                                 }
                             }
-                            mainHTML += '<td><input type="text" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" value="' + fieldData['value'] + '" '+disabled+'/></td>';
+                            mainHTML += '<td><input type="text" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" value="' + fieldData['value'] + '" '+disabled+'/></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'textarea':
                             if(!fieldData['value']){
                                 fieldData['value'] = '';
                             }
-                            mainHTML += '<td><input type="text" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" value="' + fieldData['value'] + '"/></td>';
+                            mainHTML += '<td colspan="3"><textarea name="' + fieldData.inputName + '" id="' + fieldData.inputName + '">'+fieldData['value']+'</textarea></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'password':
                             mainHTML += '<td><input type="password" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '"/></td>';
@@ -897,22 +978,26 @@ var gui = new function(){
                             mainHTML += '<td><input type="checkbox" value="' + fieldData.value + '" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" '+ checked +'/></td>';
                             break;
                         case 'radio':
-                            mainHTML += '<td><input type="text" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '"/></td>';
+                            mainHTML += '<td><input type="text" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '"/></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'dropdown':
                             mainHTML += '<td><select name="' + fieldData.inputName + '" id="' + fieldData.inputName + '">';
                             mainHTML += gui.createDropdown(fieldData.values, fieldData.captions, fieldData.preselected);
-                            mainHTML += '</select></td>';
+                            mainHTML += '</select></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'space':
                             mainHTML += '<td></td>';
                             break;
                         case 'wysiwyg':
                             gui.initWysiwyg = true;
-                            mainHTML += '<td colspan="3"><div class="wysiwyg" id="' + fieldData.inputName + '" contenteditable="true">'+fieldData.value+'</div></td>';
+                            
+                            //inline
+                            mainHTML += '<td colspan="3"><div class="wysiwyg" id="' + fieldData.inputName + '" contenteditable="true">'+fieldData.value+'</div></td><td>'+fieldData['appendix']+'</td>';
+                            
+                            //mainHTML += '<td colspan="3"><textarea class="wysiwyg" id="' + fieldData.inputName + '" name="' + fieldData.inputName + '">'+fieldData.value+'</textarea></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'button':
-                            mainHTML += '<td colspan="1"><a href="#" onclick="'+fieldData.actionFunction+'" class="btn btn-default">'+fieldData.value+'</a></td>';
+                            mainHTML += '<td colspan="1"><a href="#" onclick="'+fieldData.actionFunction+'" class="btn btn-default">'+fieldData.value+'</a></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'file':
                             gui.initializeUploadify = true;
@@ -923,7 +1008,10 @@ var gui = new function(){
                                 fieldValue = fieldData.value;
                                 fileGallery = gui.generateFileGallery(fieldData.value, fieldData.inputName);
                             }
-                            mainHTML += '<td colspan="1">'+fileGallery+'<ul id="' + fieldData.inputName + '_fileList"></ul><input type="hidden" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" value="'+fieldValue+'"><div id="' + fieldData.inputName + '_fileField"></div></td>';
+                            mainHTML += '<td colspan="1">'+fileGallery+'<ul id="' + fieldData.inputName + '_fileList"></ul><input type="hidden" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '" value="'+fieldValue+'"><div id="' + fieldData.inputName + '_fileField"></div></td><td>'+fieldData['appendix']+'</td>';
+                            break;
+                        case 'html':
+                            mainHTML += '<td colspan="3">'+fieldData.value+'</td><td>'+fieldData['appendix']+'</td>';
                             break;
                     }
         mainHTML += '</tr>'; 
@@ -949,18 +1037,22 @@ var gui = new function(){
 
 
         var html =  '<form id="dynForm" class="dynForm">';
-        if(advancedHTML.length > 0){
-            html += '<table class="advanced">';
-            html += advancedHTML;
-            html += '<tr><td colspan="3" align="center"><a href="#" class="toggle" onclick="gui.toggleAdvanced();"><i class="glyphicon glyphicon-chevron-down""></i><i class="glyphicon glyphicon-chevron-up""></i></a></td></tr>';
-            html += '</table>';
-        }
         if(options['headline'].length > 0)
             html +=  '<h1>' + options['headline'] + '</h1>';
-        html +=  '<table>';
+        html +=  '<table class="gui_form_table">';
         html += mainHTML;
-        html += '<tr><td colspan="3"><a href="#" onclick="history.back();" class="btn btn-primary" style="margin-right:15px;">Back</a><input type="submit" value="' + options['buttonTitle'] + '" name="submit" id="submitButton" class="btn btn-success"></td></tr>';
-        html += '</table>';
+        html += '<tr><td colspan="3">';
+        
+        if(advancedHTML.length > 0){
+            html += '<hr>';
+            html += '<table class="advanced">';
+            html += '<tr><td colspan="3"><a href="#" class="toggle" onclick="gui.toggleAdvanced();" style="font-size: 20px;">Advanced Settings&nbsp;<i class="glyphicon glyphicon-chevron-down""></i><i class="glyphicon glyphicon-chevron-up""></i></a></td></tr>';
+            
+            html += advancedHTML;
+            html += '</table>';
+        }
+        html += '</td></tr>';
+        html += '<tr><td colspan="3"><a href="panel.html" onclick="" class="btn btn-primary" style="margin-right:15px;">Back</a><input type="submit" value="' + options['buttonTitle'] + '" name="submit" id="submitButton" class="btn btn-success"></td></tr>';
         html += '</form>';
         
         $($selector).html(html);
@@ -971,7 +1063,7 @@ var gui = new function(){
             });
         }
         if(this.initWysiwyg){
-            $('.wysiwyg').ckeditor(function(){}, {allowedContent: true});
+            $('.wysiwyg').ckeditor(function(){}, {allowedContent: true,entities:false,basicEntities:false});
         }
         if(this.initializeUploadify){
             $.each(fields, function(index, fieldData){
@@ -1415,7 +1507,7 @@ var adminPanel = new function(){
         fieldArray[3] = field3;
                
         var field4 = [];
-        field4['caption'] = '';
+        field4['caption'] = 'Change Password';
         field4['inputName'] = 'changePassword';
         field4['value'] = 'Change Password';
         field4['type'] = 'button';
@@ -1624,6 +1716,9 @@ var adminPanel = new function(){
     
     //contents
     this.showCreateContentForm = function(){
+        var cmsConfig = cms.getConfig();
+        
+        
         var fieldArray = [];
         var options = [];
         options['headline'] = 'Create content';
@@ -1639,9 +1734,19 @@ var adminPanel = new function(){
                 description = $('#content').text();
                 description = description.substr(0,100);
             }
-            contents.create($('#parent_navigation_id').val(), $('#title').val(), $('#keywords').val(), description, base64_encode($('#content').html()), $('#template').val(), isactive);
+            
+            var templateVarsPostArray = [];
+            $templateVars = $('.template_var');
+            if($templateVars.length > 0){
+               $templateVars.each(function(){
+                    var id = $(this).attr('data-var-id');
+                    templateVarsPostArray[id] = $(this).val();
+                });
+            }
+            
+            contents.create($('#parent_navigation_id').val(), $('#title').val(), $('#keywords').val(), description, base64_encode($('#content').html()), $('#template').val(), isactive, JSON.stringify(templateVarsPostArray));
             alert('Submitted');
-            adminPanel.showContentOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
         
@@ -1656,8 +1761,9 @@ var adminPanel = new function(){
         var field1 = [];
         field1['caption'] = 'Keywords';
         field1['inputName'] = 'keywords';
-        field1['type'] = 'text';
+        field1['type'] = 'textarea';
         field1['advanced'] = true;
+        field1['appendix'] = 'Comma seperated keywords of the page.';
         fieldArray[1] = field1;
         
         var field2 = [];
@@ -1665,6 +1771,7 @@ var adminPanel = new function(){
         field2['inputName'] = 'description';
         field2['type'] = 'textarea';
         field2['advanced'] = true;
+        field2['appendix'] = 'Meta description of the page.';
         fieldArray[2] = field2;
         
         var field3 = [];
@@ -1698,12 +1805,25 @@ var adminPanel = new function(){
         field6['inputName'] = 'template';
         field6['values'] = templateArray[0];
         field6['captions'] = templateArray[1];
+        field6['preselected'] = cmsConfig['template_id'];
         field6['type'] = 'dropdown';
         field6['advanced'] = true;
         fieldArray[6] = field6;
         
+        var field7 = [];
+        field7['caption'] = 'Template Settings';
+        field7['value'] = '<div id=\'templateSettings\'></div>';
+        field7['type'] = 'html';
+        field7['advanced'] = true;
+        fieldArray[7] = field7;
+        
         
         var content = gui.createForm('#adminPanel',fieldArray, options);
+        
+        adminPanel.generateTemplateVarFields('#templateSettings', cmsConfig['template_id']);
+        
+        
+        
     };
     this.showUpdateContentForm = function(content_id){
         var fieldArray = [];
@@ -1722,9 +1842,20 @@ var adminPanel = new function(){
                 description = $('#content').text();
                 description = description.substr(0,100);
             }
-            contents.update(content_id, $('#parent_navigation_id').val(), $('#title').val(), $('#keywords').val(), description, $('#content').html(), $('#template').val(), isactive);
+            
+            var templateVarsPostArray = [];
+            $templateVars = $('.template_var');
+            if($templateVars.length > 0){
+               $templateVars.each(function(){
+                    var id = $(this).attr('data-var-id');
+                    templateVarsPostArray[id] = $(this).val();
+                });
+            }
+            console.log(templateVarsPostArray);
+            
+            contents.update(content_id, $('#parent_navigation_id').val(), $('#content_title').val(), $('#keywords').val(), description, $('#content').html(), $('#template').val(), isactive, JSON.stringify(templateVarsPostArray));
             alert('Updated');
-            adminPanel.showContentOverview();
+            window.location.href = 'index.php';
             
             $('.cms_widget_area').html('');
         };
@@ -1737,7 +1868,7 @@ var adminPanel = new function(){
         var field0 = [];
         field0['caption'] = 'Title';
         field0['value'] = contentData['title'];
-        field0['inputName'] = 'title';
+        field0['inputName'] = 'content_title';
         field0['type'] = 'text';
         field0['advanced'] = false;
         fieldArray[0] = field0;
@@ -1747,7 +1878,7 @@ var adminPanel = new function(){
         field1['caption'] = 'Keywords';
         field1['value'] = contentData['keywords'];
         field1['inputName'] = 'keywords';
-        field1['type'] = 'text';
+        field1['type'] = 'textarea';
         field1['advanced'] = true;
         fieldArray[1] = field1;
         
@@ -1759,9 +1890,11 @@ var adminPanel = new function(){
         field2['advanced'] = true;
         fieldArray[2] = field2;
         
+        var contentHTML = base64_decode(contentData['content']);
+        
         var field3 = [];
         field3['caption'] = 'Content';
-        field3['value'] = base64_decode(contentData['content']);
+        field3['value'] = contentHTML;
         field3['inputName'] = 'content';
         field3['type'] = 'wysiwyg';
         fieldArray[3] = field3;
@@ -1813,9 +1946,25 @@ var adminPanel = new function(){
         field7['actionFunction'] = 'adminPanel.showAddContentToNavigationForm(\''+content_id+'\')';
         fieldArray[7] = field7;
         
+        var field8 = [];
+        field8['caption'] = '<span style="font-size:20px">Template Settings</span>';
+        field8['value'] = '<div id=\'templateSettings\'></div>';
+        field8['type'] = 'html';
+        field8['advanced'] = true;
+        fieldArray[8] = field8;
         
+        
+        console.log('2');
         var content = gui.createForm('#adminPanel',fieldArray, options);
+        var templateVars = contentData['template_vars']
+        if(templateVars.length === 0){
+            templateVars = [];
+        }else{
+            templateVars = JSON.parse(templateVars);
+        }
+        adminPanel.generateTemplateVarFields('#templateSettings', contentData['template'], templateVars);
         
+        console.log('4');
         
         $.each($('.cms_widget_area'), function(){
             var template_widget_area_id = String($(this).data('textarea-id'));
@@ -1834,7 +1983,7 @@ var adminPanel = new function(){
     this.verifyContentRemoval = function(content_id){
         var link = 'api.php?action=deleteContent&content_id='+content_id;
         gui.verifyRemoval('content', link);
-        this.showContentOverview();
+        window.location.href = 'index.php';
     };
     this.showContentOverview = function(){
         
@@ -1969,7 +2118,7 @@ var adminPanel = new function(){
         options['action'] = function(){
             navigations.create($('#title').val(), $('#parent_id').val());
             alert('Submitted');
-            adminPanel.showNavigationOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
         
@@ -2012,7 +2161,7 @@ var adminPanel = new function(){
         options['action'] = function(){
             navigations.update(navigation_id, $('#title').val(), $('#parent_id').val());
             alert('Updated');
-            adminPanel.showNavigationOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
 
@@ -2082,7 +2231,7 @@ var adminPanel = new function(){
     this.verifyNavigationRemoval = function(navigation_id){
         var link = 'api.php?action=deleteNavigation&navigation_id='+navigation_id;
         gui.verifyRemoval('navigation', link);
-        this.showNavigationOverview();
+        window.location.href = 'index.php';
     };
     
     //widgets
@@ -2263,7 +2412,7 @@ var adminPanel = new function(){
         options['action'] = function(){
             cms.updateConfig($('#pageTitle').val(), $('#keywords').val(), cmsConfig['template_id'], cmsConfig['home_page'], $('#webmaster_mail_adress').val(), $('#analytics').val());
             alert('Updated');
-            adminPanel.showContentOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
         
@@ -2281,7 +2430,7 @@ var adminPanel = new function(){
         field1['caption'] = 'Keywords';
         field1['inputName'] = 'keywords';
         field1['value'] = cmsConfig['keywords'];
-        field1['type'] = 'text';
+        field1['type'] = 'textarea';
         fieldArray[1] = field1;
         
         var field2 = [];
@@ -2340,7 +2489,7 @@ var adminPanel = new function(){
         options['action'] = function(){
             cms.changeTemplate($('#template').val());
             alert('Template changed!');
-            adminPanel.showTemplateOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
         
@@ -2427,10 +2576,67 @@ var adminPanel = new function(){
             adminPanel.showTemplateOverview();
         }
     };
+    this.generateTemplateVarFields = function($element, template_id, values){
+      var result;
+        
+        $.ajax({
+            type: 'POST',
+            url: "api.php?action=getTemplateVars",
+            data: { template_id: template_id },
+            success:function(data){
+                if(data.length > 0){
+                templateVars = JSON.parse(data);
+                var html = '<table><tbody>';
+                $.each(templateVars, function(index, template_var){
+                    var id = template_var['var_id'];
+                    if(typeof values !== 'undefined')
+                        value = values[id];
+                    else
+                        value = template_var['var_default'];
+                    
+                    html += '<tr>';
+                        html += '<td>'+template_var['var_title']+'</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                        html += '<td colspan="3"><textarea class="template_var" name="template_var_'+template_var['var_id']+'" data-var-id="'+template_var['var_id']+'" id="template_var_'+templateVars.id+'">'+value+'</textarea></td>';
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+                $($element).html(html);
+                console.log(result);
+            }
+                
+            }
+        });
+    };
     
     
     //apps
-    this.showAddPluginform = function(){
+    this.showPluginOverview = function(){
+        
+        
+        var actions = [];
+        
+        actions['add'] = [];
+        actions['add']['onclick'] = 'adminPanel.showAddPluginForm();';
+        actions['add']['caption'] = 'Install Plugin';
+        
+        
+//        actions['delete'] = [];
+//        actions['delete']['onclick'] = 'adminPanel.verifyTemplateRemoval';
+//        actions['delete']['caption'] = 'Delete Template';
+        
+        var formActions = [];
+//        formActions[0] = actions['change'];
+        formActions[0] = actions['add'];
+//        formActions['delete'] = actions['delete'];
+        
+        
+        var pluginArray = plugins.getPlugins();
+        gui.createOverview('#adminPanel', pluginArray[0],  pluginArray[1], formActions, 'Plugins');
+        
+    };
+    this.showAddPluginForm = function(){
         var fieldArray = [];
         var options = [];
 
@@ -2438,7 +2644,7 @@ var adminPanel = new function(){
         options['action'] = function(){
             plugins.addPlugin($('#plugin_file').val());
             alert('File(s) added');
-            adminPanel.showContentOverview();
+            window.location.href = 'index.php';
         };
         options['buttonTitle'] = 'Save';
 
@@ -2678,7 +2884,11 @@ var adminPanel = new function(){
             gui.createPanel('#filePanel', contentData[0],  contentData[1], actions, 'Files');
         }
         
+        cms.checkForUpdates();
+        
         plugins.initPlugins();
+        
+        
         
         
     }

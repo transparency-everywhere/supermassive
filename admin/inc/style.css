@@ -1,19 +1,35 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 25.07.2014, 23:12:15
-    Author     : Transparency-Everywhere
-*/
+This file is published by transparency-everywhere with the best deeds.
+Check transparency-everywhere.com for further information.
 
+Licensed under the CC License, Version 4.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://creativecommons.org/licenses/by/4.0/legalcode
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+@author nicZem for tranpanrency-everywhere.com
+*/
 body{
     overflow:auto!important;
 }
 
-
+/*
 div:hover .cms_dropdown{
+    display: block!important;
+}*/
+
+ul:hover .cms_dropdown{
+    display: block!important;
+}
+.menu-added li:hover .cms_dropdown{
     display: block!important;
 }
 
@@ -24,17 +40,22 @@ div:hover .cms_dropdown{
 
 .cms_dropdown{
     color: #8A8A8A;
+    padding: 0;
     background: #F7F7F7;
     border: 1px solid #F0F0F0;
     border-radius: 3px;
     position: absolute;
     right: 5px;
     top: 5px;
-    display:none;
+    display: none;
+    width: 25px;
+    height: 25px;
 }
 
 .cms_dropdown img{
-    height: 20px;
+   height: 15px;
+    margin-top: -15px;
+    margin: 0;
 }
 
 .cms_dropdown ul{
@@ -73,11 +94,11 @@ div:hover .cms_dropdown{
 }
 
 #cms_menu{
-    margin-left:-245px;
+    margin-left:-175px;
     position: absolute;
     top: 5px;
     left: 0;
-    width: 250px;
+    width: 180px;
     z-index: 9999;
     border: 1px solid #c9c9c9;
     background:#FFF;
@@ -115,6 +136,16 @@ div:hover .cms_dropdown{
     height:auto;
 }
 
+#cms_menu li.updateField{
+    display:none;
+    margin: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background: #EAEAEA;
+    padding: 5px;
+    height:auto;
+}
+
 #cms_menu li.userField a:link,#cms_menu li.userField a:hover,#cms_menu li.userField a:active,#cms_menu li.userField a:visited{
     color: #686868;
     font-size: 15px;
@@ -135,14 +166,22 @@ div:hover .cms_dropdown{
 }
 
 #cms_menu li:hover{
-    height:auto;
+    background: #EAEAEA;
 }
 
     #cms_menu ul li>ul{
+        position: absolute;
         display: none;
         margin: -5px;
         margin-top: 0;
         border-top: 1px solid #F3F3F3;
+        margin-left: 174px;
+        background: #FFF;
+        width: 200px;
+        z-index: 9999;
+        border: 1px solid #C3C3C3;
+        border-left: none;
+        margin-top: -30px;
     }
 
     #cms_menu ul li:hover>ul{
@@ -231,6 +270,7 @@ margin-right: -20px;
 
 .dynForm table{
     width: 100%;
+    font-weight: 200;
 }
 
 .dynForm tr{
@@ -262,13 +302,19 @@ margin-right: -20px;
 }
 
 .dynForm .advanced .glyphicon-chevron-up{
+    float: left;
+    margin-left: 145px;
+    margin-top: -15px;
     display:none;
 }
 .dynForm .advanced.open .glyphicon-chevron-down{
     display:none;
 }
 .dynForm .advanced.open .glyphicon-chevron-up{
-    display:block;
+    float: left;
+    margin-left: 145px;
+    margin-top: -15px;
+    display:none;
 }
 
 .dynForm .wysiwyg{
@@ -398,4 +444,74 @@ margin-right: -20px;
 
 .panel{
     border: 1px solid #E2E2E2!important;
+}
+
+
+.gui_form_table input[type=text]{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.gui_form_table tr td:first-of-type{
+    padding: 8px;
+    width: 190px;
+    padding-left: 4px;
+}
+
+.gui_form_table tr td:last-of-type{
+    padding:8px;
+    vertical-align: top;
+    padding-left: 5px;
+}
+
+.gui_form_table textarea{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    color: #555555;
+}
+
+.gui_form_table input[type=checkbox]{
+visibility: hidden;
+}
+
+.checkbox label{
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    background: #fcfff4;
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+}
+
+select{
+    background: #FFF;
+    font-family:ubuntu;
+    padding:5px;
+    border-radius: 5px;
 }

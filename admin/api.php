@@ -1,10 +1,23 @@
 <?php
+/*
+This file is published by transparency-everywhere with the best deeds.
+Check transparency-everywhere.com for further information.
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Licensed under the CC License, Version 4.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://creativecommons.org/licenses/by/4.0/legalcode
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+@author nicZem for tranpanrency-everywhere.com
+*/
 include('inc/functions.php');
 
 if(isset($_GET['action']))
@@ -97,7 +110,7 @@ switch($action){
 //contents    
     case'createContent':
         $class_content = new content();
-        echo $class_content->create($_POST['parent_navigation_id'], $_POST['title'], $_POST['keywords'], $_POST['description'], $_POST['content'], $_POST['template'], $_POST['active']);
+        echo $class_content->create($_POST['parent_navigation_id'], $_POST['title'], $_POST['keywords'], $_POST['description'], $_POST['content'], $_POST['template'], $_POST['active'], $_POST['template_vars']);
         break;
     case'selectContent':
         $class_content = new content();
@@ -105,7 +118,7 @@ switch($action){
         break;
     case'updateContent':
         $class_content = new content($_POST['content_id']);
-        echo $class_content->update($_POST['parent_navigation_id'], $_POST['title'], $_POST['keywords'], $_POST['description'], $_POST['content'], $_POST['template'], $_POST['active']);
+        echo $class_content->update($_POST['parent_navigation_id'], $_POST['title'], $_POST['keywords'], $_POST['description'], $_POST['content'], $_POST['template'], $_POST['active'], $_POST['template_vars']);
         break;
     case'deleteContent':
         $class_content = new content($_GET['content_id']);
@@ -199,7 +212,7 @@ switch($action){
         echo $class_cms->updateConfig($_POST['pageTitle'], $_POST['keywords'], $_POST['templateId'], $_POST['home_page'], $_POST['webmaster_mail_adress'], $_POST['analytic_script']);
         break;
     
-    //templates
+//templates
     
     case'changeTemplate':
         $class_cms = new cms();
@@ -281,6 +294,13 @@ switch($action){
         }
         echo json_encode($result);
         break;
+        
+    case 'getTemplateVars':
+        $class_template = new template($_POST['template_id']);
+        $config = $class_template->getConfig();
+        $return = array_values($config['template_vars']);
+        echo json_encode($return);
+        break;
 //plugins
     case'callPluginApi':
         $className = $_POST['className'];
@@ -288,10 +308,15 @@ switch($action){
         echo $class_reference->api($_POST['plugin_action'], (array)json_decode($_POST['parameters']));
         break;
     case'addPlugin':
-        $template = new template();
-        echo $template->add($_POST['file_id']);
+        $plugins = new plugins();
+        echo $plugins->add($_POST['file_id']);
         break;
-    
+
+//updates
+    case'updateRequired':
+        $cms = new cms();
+        echo $cms->updateRequired();
+        break;
     
     case'uploadFile':
         $media = $media = new media();

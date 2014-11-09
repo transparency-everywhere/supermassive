@@ -259,17 +259,18 @@ class template{
             }
         }
         if(isset($templateConfig['template_vars'])){
-            if(isset($contentData['template_vars'])){
                 $varValues = json_decode($contentData['template_vars']);
                 foreach($templateConfig['template_vars'] AS $templateVarData){
+                    
+                    
                     $var_id = $templateVarData['var_id'];
-                    if(isset($varValues[$var_id]))
+                    if((!empty($varValues[$var_id]))&& ($varValues[$var_id] !== 'undefined'))
                         $var_value = $varValues[$var_id];
                     else
                         $var_value = $templateVarData['var_default'];
+                    
                     $contents = str_replace("%var[".$templateVarData['var_id']."]%", $var_value, $contents);
                 }
-            }
         }
         
         $contents = str_replace("%content%", $site_content, $contents);

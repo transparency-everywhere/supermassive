@@ -44,6 +44,7 @@ class content{
 
             $db = new db();
             $contentId = $db->insert('contents', $contentData);
+            $contentData['id'] = $contentId;
 
             $class_template = new template($template);
             $class_template->parse($contentData);

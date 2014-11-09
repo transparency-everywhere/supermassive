@@ -963,7 +963,9 @@ var gui = new function(){
                             if(!fieldData['value']){
                                 fieldData['value'] = '';
                             }
-                            mainHTML += '<td colspan="3"><textarea name="' + fieldData.inputName + '" id="' + fieldData.inputName + '">'+fieldData['value']+'</textarea></td><td>'+fieldData['appendix']+'</td>';
+                            var fieldValue = htmlentities(fieldData['value']);
+                            fieldValue = fieldValue.replace(/"/g, "\\\"");
+                            mainHTML += '<td colspan="3"><textarea name="' + fieldData.inputName + '" id="' + fieldData.inputName + '">'+fieldValue+'</textarea></td><td>'+fieldData['appendix']+'</td>';
                             break;
                         case 'password':
                             mainHTML += '<td><input type="password" name="' + fieldData.inputName + '" id="' + fieldData.inputName + '"/></td>';
@@ -3058,4 +3060,21 @@ function empty(mixed_var) {
   }
 
   return false;
+}
+
+
+
+function htmlentities(string) {
+ var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+      return entityMap[s];
+    });
 }
